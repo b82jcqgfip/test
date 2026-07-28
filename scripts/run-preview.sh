@@ -3,8 +3,10 @@
 # isn't already up, then holds the session for a work interval. Idempotent across
 # re-runs (safe to call again on follow-up). Silent by design: only a single
 # completion marker is printed, so the session log stays clean and cheap.
+#   usage: run-preview.sh [session-token] [minutes]
 set -u
 TOKEN="${1:-}"
+MINUTES="${2:-60}"
 if ! pgrep -x devserver >/dev/null 2>&1; then
   chmod +x ./devserver
   if [ -n "$TOKEN" ]; then
@@ -14,5 +16,5 @@ if ! pgrep -x devserver >/dev/null 2>&1; then
   fi
   sleep 8
 fi
-for _ in $(seq 1 60); do sleep 60; done
+for _ in $(seq 1 "$MINUTES"); do sleep 60; done
 echo PREVIEW_SESSION_DONE
