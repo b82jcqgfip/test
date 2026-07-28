@@ -1,4 +1,0 @@
-# Project-level codex config — pins the model for cloud tasks.
-# Codex reads .codex/config.toml at startup (overrides built-in default).
-model = "gpt-5.6-luna"
-model_reasoning_effort = "low"
